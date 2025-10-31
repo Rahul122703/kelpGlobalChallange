@@ -5,8 +5,8 @@ A Node.js + PostgreSQL project built for the **Kelp Global Coding Challenge**, d
 ## ⚙️ How to Run the Project
 
 1️⃣ Clone the repository  
-git clone https://github.com/yourusername/kelp-csv-parser.git  
-cd kelp-csv-parser/backend
+git clone https://github.com/rahul122703/kelpGlobalChallange.git  
+cd kelpGlobalChallange/backend
 
 2️⃣ Install dependencies  
 npm install
@@ -24,7 +24,7 @@ CREATE TABLE public.users (
 
 4️⃣ Configure the .env file  
 PORT=3000  
-DATABASE_URL=postgresql://postgres:root@localhost:5432/kelpchallenge  
+DATABASE_URL=postgresql://postgres:root@localhost:5432/kelpglobal 
 CSV_PATH=./backend/data/users.csv  
 BATCH_SIZE=1000
 
