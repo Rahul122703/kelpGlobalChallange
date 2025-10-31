@@ -1,5 +1,3 @@
-readme_markdown = """
-
 # 🚀 Kelp CSV Parser
 
 A Node.js + PostgreSQL project built for the **Kelp Global Coding Challenge**, designed to efficiently process large CSV files (even 60k+ rows) in batches and insert them into a database.
@@ -72,4 +70,3 @@ Response:
 Below is a screenshot showing successful batch processing of a large CSV file and Postman confirmation:
 
 ![Batch Processing Proof](./images/batchprocessing.png)
-"""
