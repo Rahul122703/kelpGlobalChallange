@@ -71,3 +71,4 @@ Below is a screenshot showing successful batch processing of a large CSV file an
 
 ![Batch Processing Proof](./images/batchprocessing.png)
 ![Batch Processing Proof](./images/databaseCode.png)
+![Batch Processing Proof](./images/jsonPreview.png)

@@ -1,6 +1,6 @@
 import express from "express";
 import dotenv from "dotenv";
-import { processCsvFile } from "./services/csvParser.js";
+import { processCsvFile, previewCsvJson } from "./services/csvParser.js";
 
 dotenv.config();
 const app = express();
@@ -17,6 +17,16 @@ app.post("/process-csv", async (req, res) => {
   } catch (err) {
     console.error("Error:", err.message);
     res.status(500).send("Internal server error while processing CSV.");
+  }
+});
+
+app.get("/preview-json", async (req, res) => {
+  try {
+    const jsonPreview = await previewCsvJson(process.env.CSV_PATH);
+    res.status(200).json(jsonPreview.slice(0, 5)); // send first 5
+  } catch (err) {
+    console.error("❌ Error generating preview:", err.message);
+    res.status(500).send("Error generating JSON preview.");
   }
 });
 
