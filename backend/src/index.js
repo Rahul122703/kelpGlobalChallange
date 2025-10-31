@@ -15,7 +15,7 @@ app.post("/process-csv", async (req, res) => {
     await processCsvFile(process.env.CSV_PATH);
     res.status(200).send("CSV processed and data inserted successfully!");
   } catch (err) {
-    console.error("❌ Error:", err.message);
+    console.error("Error:", err.message);
     res.status(500).send("Internal server error while processing CSV.");
   }
 });
