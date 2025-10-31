@@ -12,8 +12,8 @@ cd kelpGlobalChallange/backend
 npm install
 
 3️⃣ Setup PostgreSQL  
-CREATE DATABASE kelpchallenge;  
-\\c kelpchallenge  
+CREATE DATABASE kelpglobal;  
+\\c kelpglobal  
 CREATE TABLE public.users (  
  id SERIAL PRIMARY KEY,  
  name VARCHAR NOT NULL,  
