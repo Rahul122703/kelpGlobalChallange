@@ -71,7 +71,6 @@ async function insertBatch(records) {
     for (const user of records) {
       const fullName = `${user.name.firstName} ${user.name.lastName}`;
       const age = parseInt(user.age);
-
       const { address, name, age: _, ...rest } = user;
       const additionalInfo = Object.keys(rest).length ? rest : null;
 
