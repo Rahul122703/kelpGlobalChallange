@@ -23,9 +23,9 @@ app.post("/process-csv", async (req, res) => {
 app.get("/preview-json", async (req, res) => {
   try {
     const jsonPreview = await previewCsvJson(process.env.CSV_PATH);
-    res.status(200).json(jsonPreview.slice(0, 5)); // send first 5
+    res.status(200).json(jsonPreview.slice(0, 5));
   } catch (err) {
-    console.error("❌ Error generating preview:", err.message);
+    console.error("Error generating preview:", err.message);
     res.status(500).send("Error generating JSON preview.");
   }
 });
