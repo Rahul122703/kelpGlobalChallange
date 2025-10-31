@@ -34,7 +34,6 @@ async function parseCsvStream(filePath, onRecord) {
     let current = "";
     let insideQuotes = false;
 
-    // Custom CSV parsing: supports commas inside quotes
     for (const char of line) {
       if (char === '"') {
         insideQuotes = !insideQuotes;
@@ -85,7 +84,6 @@ async function insertBatch(records) {
     await client.query("COMMIT");
   } catch (err) {
     await client.query("ROLLBACK");
-    console.error("❌ Error inserting batch:", err.message);
   } finally {
     client.release();
   }
@@ -113,11 +111,9 @@ async function printAgeDistribution() {
 
 export async function processCsvFile(csvPath) {
   if (!fs.existsSync(csvPath)) {
-    console.error("❌ CSV file not found:", csvPath);
     return;
   }
 
-  console.log(`📂 Reading CSV from: ${csvPath}`);
   const BATCH_SIZE = parseInt(process.env.BATCH_SIZE) || 1000;
   const batch = [];
   let total = 0;
@@ -128,15 +124,29 @@ export async function processCsvFile(csvPath) {
 
     if (batch.length >= BATCH_SIZE) {
       await insertBatch(batch.splice(0, BATCH_SIZE));
-      console.log(`📦 Inserted ${total} records so far...`);
     }
   });
 
   if (batch.length) {
     await insertBatch(batch);
-    console.log(`📦 Inserted final ${batch.length} records.`);
   }
 
-  console.log(`✅ Completed. Total records processed: ${total}`);
   await printAgeDistribution();
+}
+
+export async function previewCsvJson(csvPath) {
+  if (!fs.existsSync(csvPath)) {
+    return [];
+  }
+
+  const BATCH_SIZE = parseInt(process.env.BATCH_SIZE) || 1000;
+  const records = [];
+
+  await parseCsvStream(csvPath, async (record) => {
+    if (records.length < BATCH_SIZE) {
+      records.push(record);
+    }
+  });
+
+  return records;
 }
